@@ -1,0 +1,33 @@
+{
+  "name": "othillo/broadway-snapshotting",
+  "description": "POC for snapshotting aggregates in broadway/broadway",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "broadway/broadway": "^1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.2"
+  },
+  "authors": [
+    {
+      "name": "othillo",
+      "email": "othillo@othillo.nl"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "othillo\\Broadway\\Snapshotting\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "othillo\\Broadway\\Snapshotting\\": "test/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.2.x-dev"
+    }
+  }
+}
