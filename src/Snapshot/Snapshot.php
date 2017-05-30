@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace othillo\Broadway\Snapshotting\Snapshot;
 
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
@@ -23,7 +21,7 @@ class Snapshot
     /**
      * @return int
      */
-    public function getPlayhead(): int
+    public function getPlayhead()
     {
         return $this->playhead;
     }
@@ -31,7 +29,7 @@ class Snapshot
     /**
      * @return EventSourcedAggregateRoot
      */
-    public function getAggregateRoot(): EventSourcedAggregateRoot
+    public function getAggregateRoot()
     {
         return $this->aggregateRoot;
     }

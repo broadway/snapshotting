@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace othillo\Broadway\Snapshotting\Snapshot;
 
 interface SnapshotRepository
@@ -13,7 +11,7 @@ interface SnapshotRepository
      *
      * @throws SnapshotNotFoundException
      */
-    public function load($id): Snapshot;
+    public function load($id);
 
     /**
      * @param Snapshot $snapshot

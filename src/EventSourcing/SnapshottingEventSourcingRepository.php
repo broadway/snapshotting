@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace othillo\Broadway\Snapshotting\EventSourcing;
 
 use Broadway\Domain\AggregateRoot;
@@ -35,7 +33,7 @@ class SnapshottingEventSourcingRepository implements Repository
     /**
      * {@inheritdoc}
      */
-    public function load($id): AggregateRoot
+    public function load($id)
     {
         try {
             $snapshot = $this->snapshotRepository->load($id);

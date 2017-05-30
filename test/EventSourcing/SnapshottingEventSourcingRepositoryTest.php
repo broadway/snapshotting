@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace othillo\Broadway\Snapshotting\EventSourcing;
 
 use Broadway\Domain\AggregateRoot;
@@ -126,7 +124,7 @@ class SnapshottingEventSourcingRepositoryTest extends PHPUnit_Framework_TestCase
         $this->snapshottingEventSourcingRepository->save($aggregateRoot);
     }
 
-    private function createSnapshot(): Snapshot
+    private function createSnapshot()
     {
         $aggregateRoot = $this->createAggregateRootWithEvents(5);
         $aggregateRoot->getUncommittedEvents();
@@ -134,7 +132,7 @@ class SnapshottingEventSourcingRepositoryTest extends PHPUnit_Framework_TestCase
         return new Snapshot($aggregateRoot);
     }
 
-    private function createAggregateRootWithEvents(int $countEvents): AggregateRoot
+    private function createAggregateRootWithEvents($countEvents)
     {
         $aggregateRoot = new TestEventSourcedAggregateRoot();
 

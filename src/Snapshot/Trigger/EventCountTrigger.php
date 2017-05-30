@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace othillo\Broadway\Snapshotting\Snapshot\Trigger;
 
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
@@ -25,7 +23,7 @@ class EventCountTrigger implements Trigger
     /**
      * {@inheritdoc}
      */
-    public function shouldSnapshot(EventSourcedAggregateRoot $aggregateRoot): bool
+    public function shouldSnapshot(EventSourcedAggregateRoot $aggregateRoot)
     {
         $clonedAggregateRoot = clone $aggregateRoot;
 
