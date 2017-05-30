@@ -16,9 +16,7 @@ interface SnapshotRepository
     /**
      * @param mixed $id should be unique across aggregate types
      *
-     * @return Snapshot
-     *
-     * @throws SnapshotNotFoundException
+     * @return Snapshot|null
      */
     public function load($id);
 

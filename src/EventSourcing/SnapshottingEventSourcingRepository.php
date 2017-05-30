@@ -44,9 +44,8 @@ class SnapshottingEventSourcingRepository implements Repository
      */
     public function load($id)
     {
-        try {
-            $snapshot = $this->snapshotRepository->load($id);
-        } catch (SnapshotNotFoundException $exception) {
+        $snapshot = $this->snapshotRepository->load($id);
+        if (null === $snapshot) {
             return $this->eventSourcingRepository->load($id);
         }
 

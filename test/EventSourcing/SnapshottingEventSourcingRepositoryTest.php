@@ -11,7 +11,6 @@
 
 namespace Broadway\Snapshotting\EventSourcing;
 
-use Broadway\Domain\AggregateRoot;
 use Broadway\Domain\DomainEventStream;
 use Broadway\Domain\DomainMessage;
 use Broadway\Domain\Metadata;
@@ -20,7 +19,6 @@ use Broadway\EventSourcing\EventSourcingRepository;
 use Broadway\EventStore\EventStore;
 use Broadway\Snapshotting\EventSourcing\Testing\TestEventSourcedAggregateRoot;
 use Broadway\Snapshotting\Snapshot\Snapshot;
-use Broadway\Snapshotting\Snapshot\SnapshotNotFoundException;
 use Broadway\Snapshotting\Snapshot\SnapshotRepository;
 use Broadway\Snapshotting\Snapshot\Trigger\EventCountTrigger;
 use PHPUnit_Framework_TestCase;
@@ -55,7 +53,7 @@ class SnapshottingEventSourcingRepositoryTest extends PHPUnit_Framework_TestCase
         $this->snapshotRepository
             ->load(42)
             ->shouldBeCalled()
-            ->willThrow(new SnapshotNotFoundException())
+            ->willReturn(null)
         ;
 
         $this->eventSourcingRepository
