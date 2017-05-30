@@ -1,12 +1,12 @@
 broadway/snapshotting
 =====================
 
-POC for snapshotting aggregates in [broadway/broadway](https://github.com/broadway/broadway).
+Proof-of-concept component providing snapshotting functionality to [broadway/broadway](https://github.com/broadway/broadway).
 
 ## Installation
 
 ```
-$ composer require othillo/broadway-snapshotting
+$ composer require broadway/snapshotting
 ```
 
 ## Documentation
@@ -17,15 +17,10 @@ Snaphots can be triggered using different strategies like once every number of e
 after an amount of time has passed. The `EventCountTrigger` implements the former strategy.
 
 ## Getting started
-This repository is just a library. It lacks (for now) implementations of the
-`SnapshottingEventStoreInterface` and the `SnapshotRepository`.
+This repository is just a library. It lacks (for now) implementations of the `SnapshotRepository`.
 
 For example if you want store your events and snapshots in a database using `doctrine/dbal`
 you will have to:
-
-* extend the `DBALEventStore` from [broadway/event-store-dbal](https://github.com/broadway/event-store-dbal)
-and implement the `SnapshottingEventStoreInterface` to query events that have been recorded 
-since the last snapshot.
 
 * create a `DBALSnapshotRepository` implementing the `SnapshotRepository` to store and fetch 
  snapshots. You wil have to figure out how to serialize your aggregate root.

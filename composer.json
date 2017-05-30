@@ -1,5 +1,5 @@
 {
-  "name": "othillo/broadway-snapshotting",
+  "name": "broadway/snapshotting",
   "description": "POC for snapshotting aggregates in broadway/broadway",
   "type": "library",
   "license": "MIT",
@@ -17,12 +17,12 @@
   ],
   "autoload": {
     "psr-4": {
-      "othillo\\Broadway\\Snapshotting\\": "src/"
+      "Broadway\\Snapshotting\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "othillo\\Broadway\\Snapshotting\\": "test/"
+      "Broadway\\Snapshotting\\": "test/"
     }
   },
   "extra": {

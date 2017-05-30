@@ -1,6 +1,15 @@
 <?php
 
-namespace othillo\Broadway\Snapshotting\EventSourcing;
+/*
+ * This file is part of the broadway/snapshotting package.
+ *
+ * (c) Qandidate.com <opensource@qandidate.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Broadway\Snapshotting\EventSourcing;
 
 use Broadway\Domain\AggregateRoot;
 use Broadway\Domain\DomainEventStream;
@@ -9,11 +18,11 @@ use Broadway\Domain\Metadata;
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
 use Broadway\EventSourcing\EventSourcingRepository;
 use Broadway\EventStore\EventStore;
-use othillo\Broadway\Snapshotting\EventSourcing\Testing\TestEventSourcedAggregateRoot;
-use othillo\Broadway\Snapshotting\Snapshot\Snapshot;
-use othillo\Broadway\Snapshotting\Snapshot\SnapshotNotFoundException;
-use othillo\Broadway\Snapshotting\Snapshot\SnapshotRepository;
-use othillo\Broadway\Snapshotting\Snapshot\Trigger\EventCountTrigger;
+use Broadway\Snapshotting\EventSourcing\Testing\TestEventSourcedAggregateRoot;
+use Broadway\Snapshotting\Snapshot\Snapshot;
+use Broadway\Snapshotting\Snapshot\SnapshotNotFoundException;
+use Broadway\Snapshotting\Snapshot\SnapshotRepository;
+use Broadway\Snapshotting\Snapshot\Trigger\EventCountTrigger;
 use PHPUnit_Framework_TestCase;
 use Prophecy\Argument;
 
