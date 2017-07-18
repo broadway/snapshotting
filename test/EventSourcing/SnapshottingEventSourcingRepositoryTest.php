@@ -11,6 +11,7 @@
 
 namespace Broadway\Snapshotting\EventSourcing;
 
+use Broadway\Domain\AggregateRoot;
 use Broadway\Domain\DomainEventStream;
 use Broadway\Domain\DomainMessage;
 use Broadway\Domain\Metadata;
@@ -20,6 +21,7 @@ use Broadway\EventStore\EventStore;
 use Broadway\Snapshotting\EventSourcing\Testing\TestEventSourcedAggregateRoot;
 use Broadway\Snapshotting\Snapshot\Snapshot;
 use Broadway\Snapshotting\Snapshot\SnapshotRepository;
+use Broadway\Snapshotting\Snapshot\Snapshotter;
 use Broadway\Snapshotting\Snapshot\Trigger\EventCountTrigger;
 use PHPUnit_Framework_TestCase;
 use Prophecy\Argument;
@@ -30,18 +32,21 @@ class SnapshottingEventSourcingRepositoryTest extends PHPUnit_Framework_TestCase
     private $eventSourcingRepository;
     private $snapshotRepository;
     private $snapshottingEventSourcingRepository;
+    private $snapshotter;
 
     public function setUp()
     {
         $this->eventSourcingRepository = $this->prophesize(EventSourcingRepository::class);
         $this->eventStore              = $this->prophesize(EventStore::class);
         $this->snapshotRepository      = $this->prophesize(SnapshotRepository::class);
+        $this->snapshotter             = $this->prophesize(Snapshotter::class);
 
         $this->snapshottingEventSourcingRepository = new SnapshottingEventSourcingRepository(
             $this->eventSourcingRepository->reveal(),
             $this->eventStore->reveal(),
             $this->snapshotRepository->reveal(),
-            new EventCountTrigger(100)
+            new EventCountTrigger(100),
+            $this->snapshotter->reveal()
         );
     }
 
@@ -109,7 +114,7 @@ class SnapshottingEventSourcingRepositoryTest extends PHPUnit_Framework_TestCase
         $aggregateRoot = $this->createAggregateRootWithEvents(99);
 
         $this->snapshotRepository
-            ->save(Argument::type(Snapshot::class))
+            ->save(Argument::type(EventSourcedAggregateRoot::class))
             ->shouldNotBeCalled()
         ;
 
@@ -123,8 +128,8 @@ class SnapshottingEventSourcingRepositoryTest extends PHPUnit_Framework_TestCase
     {
         $aggregateRoot = $this->createAggregateRootWithEvents(100);
 
-        $this->snapshotRepository
-            ->save(Argument::type(Snapshot::class))
+        $this->snapshotter
+            ->takeSnapshot(Argument::type(EventSourcedAggregateRoot::class))
             ->shouldBeCalled()
         ;
 
