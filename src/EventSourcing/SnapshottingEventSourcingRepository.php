@@ -15,9 +15,8 @@ use Broadway\Domain\AggregateRoot;
 use Broadway\EventSourcing\EventSourcingRepository;
 use Broadway\EventStore\EventStore;
 use Broadway\Repository\Repository;
-use Broadway\Snapshotting\Snapshot\Snapshot;
-use Broadway\Snapshotting\Snapshot\SnapshotNotFoundException;
 use Broadway\Snapshotting\Snapshot\SnapshotRepository;
+use Broadway\Snapshotting\Snapshot\Snapshotter;
 use Broadway\Snapshotting\Snapshot\Trigger;
 
 class SnapshottingEventSourcingRepository implements Repository
@@ -26,17 +25,20 @@ class SnapshottingEventSourcingRepository implements Repository
     private $eventStore;
     private $snapshotRepository;
     private $trigger;
+    private $snapshotter;
 
     public function __construct(
         EventSourcingRepository $eventSourcingRepository,
         EventStore $eventStore,
         SnapshotRepository $snapshotRepository,
-        Trigger $trigger
+        Trigger $trigger,
+        Snapshotter $snapshotter
     ) {
         $this->eventSourcingRepository = $eventSourcingRepository;
         $this->eventStore              = $eventStore;
         $this->snapshotRepository      = $snapshotRepository;
         $this->trigger                 = $trigger;
+        $this->snapshotter             = $snapshotter;
     }
 
     /**
@@ -67,9 +69,7 @@ class SnapshottingEventSourcingRepository implements Repository
         $this->eventSourcingRepository->save($aggregate);
 
         if ($takeSnaphot) {
-            $this->snapshotRepository->save(
-                new Snapshot($aggregate)
-            );
+            $this->snapshotter->takeSnapshot($aggregate);
         }
     }
 }
