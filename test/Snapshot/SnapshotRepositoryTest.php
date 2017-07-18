@@ -43,9 +43,40 @@ abstract class SnapshotRepositoryTest extends \PHPUnit_Framework_TestCase
         $aggregate = $this->createAggregateWithHistory(5);
         $this->repository->save(new Snapshot($aggregate));
 
+        $this->assertEquals(
+            new Snapshot($aggregate),
+            $this->repository->load(42)
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it_does_not_mutate_state_of_Snapshot_Aggregate_after_persisting()
+    {
+        $aggregate = $this->createAggregateWithHistory(5);
+        $this->repository->save(new Snapshot($aggregate));
+
         // Applying another event to Snapshotted Aggregate should not affect Snapshot version
         $aggregate->apply(new MyEvent());
         $aggregate->getUncommittedEvents();
+
+        $snapshot = $this->repository->load(42);
+        $this->assertEquals(new Snapshot($this->createAggregateWithHistory(5)), $snapshot);
+    }
+
+    /**
+     * @test
+     */
+    public function it_does_not_mutate_state_of_Snapshot_Aggregate_after_loading()
+    {
+        $aggregate = $this->createAggregateWithHistory(5);
+        $this->repository->save(new Snapshot($aggregate));
+
+        $snapshot = $this->repository->load(42);
+        $loadedAggregate = $snapshot->getAggregateRoot();
+        $loadedAggregate->apply(new MyEvent());
+        $loadedAggregate->getUncommittedEvents();
 
         $this->assertEquals(
             new Snapshot($this->createAggregateWithHistory(5)),

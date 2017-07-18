@@ -24,7 +24,7 @@ class InMemorySnapshotRepository implements SnapshotRepository
      */
     public function load($id)
     {
-        return isset($this->store[$id]) ? $this->store[$id] : null;
+        return isset($this->store[$id]) ? unserialize($this->store[$id]) : null;
     }
 
     /**
@@ -32,8 +32,7 @@ class InMemorySnapshotRepository implements SnapshotRepository
      */
     public function save(Snapshot $snapshot)
     {
-        // Clone to prevent unintentional mutation.
         return $this->store[$snapshot->getAggregateRoot()->getAggregateRootId()] =
-            new Snapshot(clone $snapshot->getAggregateRoot());
+            serialize($snapshot);
     }
 }
