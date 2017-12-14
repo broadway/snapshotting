@@ -18,8 +18,8 @@ class TestEventSourcedAggregateRoot extends EventSourcedAggregateRoot
     /**
      * {@inheritdoc}
      */
-    public function getAggregateRootId()
+    public function getAggregateRootId(): string
     {
-        return 42;
+        return '42';
     }
 }
