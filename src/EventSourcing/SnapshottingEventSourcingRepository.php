@@ -42,7 +42,7 @@ class SnapshottingEventSourcingRepository implements Repository
     /**
      * {@inheritdoc}
      */
-    public function load($id)
+    public function load($id): AggregateRoot
     {
         $snapshot = $this->snapshotRepository->load($id);
         if (null === $snapshot) {
