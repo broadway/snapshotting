@@ -44,4 +44,12 @@ class EventCountTrigger implements Trigger
 
         return false;
     }
+
+    /**
+     * @return int
+     */
+    public function getEventCount(): int
+    {
+        return $this->eventCount;
+    }
 }

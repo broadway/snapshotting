@@ -131,6 +131,33 @@ class SnapshottingEventSourcingRepositoryTest extends PHPUnit_Framework_TestCase
         $this->snapshottingEventSourcingRepository->save($aggregateRoot);
     }
 
+    /**
+     * @test
+     */
+    public function it_rebuilds_a_snapshot_when_threshold_reached()
+    {
+
+        $this->eventStore
+            ->load(55)
+            ->shouldBeCalled()
+            ->willReturn($this->createDomainStream(55, 150));
+
+        $this->snapshotRepository
+            ->load(55)
+            ->shouldBeCalled();
+
+        $this->snapshotRepository
+            ->save(Argument::type(Snapshot::class))
+            ->shouldBeCalled();
+
+        $this->eventSourcingRepository
+            ->load(55)
+            ->shouldBeCalled()
+        ->willReturn(new TestEventSourcedAggregateRoot());
+
+        $this->snapshottingEventSourcingRepository->rebuild(55);
+    }
+
     private function createSnapshot()
     {
         $aggregateRoot = $this->createAggregateRootWithEvents(5);
@@ -148,5 +175,16 @@ class SnapshottingEventSourcingRepositoryTest extends PHPUnit_Framework_TestCase
         }
 
         return $aggregateRoot;
+    }
+
+    private function createDomainStream($id, $countEvents)
+    {
+        $stream = [];
+
+        for ($i = 0; $i < $countEvents; $i++) {
+            array_push($stream, DomainMessage::recordNow($id, $i, new Metadata([]), new \stdClass()));
+        }
+
+        return new DomainEventStream($stream);
     }
 }

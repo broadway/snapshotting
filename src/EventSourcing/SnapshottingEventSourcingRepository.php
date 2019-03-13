@@ -62,13 +62,25 @@ class SnapshottingEventSourcingRepository implements Repository
      */
     public function save(AggregateRoot $aggregate) : void
     {
-        $takeSnaphot = $this->trigger->shouldSnapshot($aggregate);
+        $takeSnapshot = $this->trigger->shouldSnapshot($aggregate);
 
         $this->eventSourcingRepository->save($aggregate);
 
-        if ($takeSnaphot) {
+        if ($takeSnapshot) {
             $this->snapshotRepository->save(
                 new Snapshot($aggregate)
+            );
+        }
+    }
+
+    // ToDo: Rebuild
+    public function rebuild($id) : void
+    {
+        $eventStream = $this->eventStore->load($id);
+
+        if ($eventStream->getIterator()->count() >= $this->trigger->getEventCount()) {
+            $this->snapshotRepository->save(
+                new Snapshot($this->load($id))
             );
         }
     }

@@ -16,4 +16,6 @@ use Broadway\EventSourcing\EventSourcedAggregateRoot;
 interface Trigger
 {
     public function shouldSnapshot(EventSourcedAggregateRoot $aggregateRoot);
+
+    public function getEventCount(): int;
 }
