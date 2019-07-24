@@ -60,7 +60,7 @@ class SnapshottingEventSourcingRepository implements Repository
     /**
      * {@inheritdoc}
      */
-    public function save(AggregateRoot $aggregate)
+    public function save(AggregateRoot $aggregate): void
     {
         $takeSnaphot = $this->trigger->shouldSnapshot($aggregate);
 
