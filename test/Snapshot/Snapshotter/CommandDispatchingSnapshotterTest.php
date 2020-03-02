@@ -14,7 +14,7 @@ use Broadway\CommandHandling\CommandBus;
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
 use Broadway\Snapshotting\Snapshot\Command\ScheduleSnapshot;
 
-class CommandDispatchingSnapshotterTest extends \PHPUnit_Framework_TestCase
+class CommandDispatchingSnapshotterTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var CommandBus
@@ -43,7 +43,7 @@ class CommandDispatchingSnapshotterTest extends \PHPUnit_Framework_TestCase
         $this->snapshotter->takeSnapshot(new MyOtherAggregate());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->commandBus = $this->prophesize(CommandBus::class);
@@ -56,8 +56,8 @@ final class MyOtherAggregate extends EventSourcedAggregateRoot
     /**
      * @return string
      */
-    public function getAggregateRootId()
+    public function getAggregateRootId(): string
     {
-        return 42;
+        return '42';
     }
 }

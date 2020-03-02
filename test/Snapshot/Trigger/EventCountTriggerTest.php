@@ -12,9 +12,9 @@
 namespace Broadway\Snapshotting\Snapshot\Trigger;
 
 use Broadway\Snapshotting\EventSourcing\Testing\TestEventSourcedAggregateRoot;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class EventCountTriggerTest extends PHPUnit_Framework_TestCase
+class EventCountTriggerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test

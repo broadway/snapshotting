@@ -23,10 +23,10 @@ use Broadway\Snapshotting\Snapshot\Snapshot;
 use Broadway\Snapshotting\Snapshot\SnapshotRepository;
 use Broadway\Snapshotting\Snapshot\Snapshotter;
 use Broadway\Snapshotting\Snapshot\Trigger\EventCountTrigger;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
-class SnapshottingEventSourcingRepositoryTest extends PHPUnit_Framework_TestCase
+class SnapshottingEventSourcingRepositoryTest extends \PHPUnit\Framework\TestCase
 {
     private $eventStore;
     private $eventSourcingRepository;
@@ -34,7 +34,7 @@ class SnapshottingEventSourcingRepositoryTest extends PHPUnit_Framework_TestCase
     private $snapshottingEventSourcingRepository;
     private $snapshotter;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->eventSourcingRepository = $this->prophesize(EventSourcingRepository::class);
         $this->eventStore              = $this->prophesize(EventStore::class);
