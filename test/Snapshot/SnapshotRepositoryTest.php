@@ -12,7 +12,7 @@ namespace Broadway\Snapshotting\Snapshot;
 
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
 
-abstract class SnapshotRepositoryTest extends \PHPUnit_Framework_TestCase
+abstract class SnapshotRepositoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var SnapshotRepository
@@ -89,7 +89,7 @@ abstract class SnapshotRepositoryTest extends \PHPUnit_Framework_TestCase
      */
     protected abstract function createRepository();
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->repository = $this->createRepository();
@@ -116,9 +116,9 @@ final class MyAggregate extends EventSourcedAggregateRoot
     /**
      * @return string
      */
-    public function getAggregateRootId()
+    public function getAggregateRootId(): string
     {
-        return 42;
+        return '42';
     }
 
     protected function applyMyEvent()

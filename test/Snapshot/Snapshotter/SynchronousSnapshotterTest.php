@@ -14,7 +14,7 @@ use Broadway\EventSourcing\EventSourcedAggregateRoot;
 use Broadway\Snapshotting\Snapshot\Snapshot;
 use Broadway\Snapshotting\Snapshot\SnapshotRepository;
 
-class SynchronousSnapshotterTest extends \PHPUnit_Framework_TestCase
+class SynchronousSnapshotterTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var SnapshotRepository
@@ -40,7 +40,7 @@ class SynchronousSnapshotterTest extends \PHPUnit_Framework_TestCase
         $this->snapshotter->takeSnapshot($aggregate);
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->repository = $this->prophesize(SnapshotRepository::class);
@@ -53,8 +53,8 @@ final class MyAggregate extends EventSourcedAggregateRoot
     /**
      * @return string
      */
-    public function getAggregateRootId()
+    public function getAggregateRootId(): string
     {
-        return 42;
+        return '42';
     }
 }
