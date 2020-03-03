@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * This file is part of the broadway/snapshotting package.
  *
@@ -53,9 +55,6 @@ class CommandDispatchingSnapshotterTest extends \PHPUnit\Framework\TestCase
 
 final class MyOtherAggregate extends EventSourcedAggregateRoot
 {
-    /**
-     * @return string
-     */
     public function getAggregateRootId(): string
     {
         return '42';

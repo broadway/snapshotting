@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * This file is part of the broadway/snapshotting package.
  *
@@ -14,8 +16,5 @@ use Broadway\EventSourcing\EventSourcedAggregateRoot;
 
 interface Snapshotter
 {
-    /**
-     * @param EventSourcedAggregateRoot $aggregateRoot
-     */
     public function takeSnapshot(EventSourcedAggregateRoot $aggregateRoot);
 }

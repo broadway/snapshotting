@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * This file is part of the broadway/snapshotting package.
  *
@@ -22,17 +24,11 @@ class CommandDispatchingSnapshotter implements Snapshotter
      */
     private $commandBus;
 
-    /**
-     * @param CommandBus $commandBus
-     */
     public function __construct(CommandBus $commandBus)
     {
         $this->commandBus = $commandBus;
     }
 
-    /**
-     * @param EventSourcedAggregateRoot $aggregateRoot
-     */
     public function takeSnapshot(EventSourcedAggregateRoot $aggregateRoot)
     {
         $this->commandBus->dispatch(

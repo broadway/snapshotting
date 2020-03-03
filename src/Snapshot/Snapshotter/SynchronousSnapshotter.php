@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * This file is part of the broadway/snapshotting package.
  *
@@ -22,17 +24,11 @@ class SynchronousSnapshotter implements Snapshotter
      */
     private $snapshotRepository;
 
-    /**
-     * @param SnapshotRepository $snapshotRepository
-     */
     public function __construct(SnapshotRepository $snapshotRepository)
     {
         $this->snapshotRepository = $snapshotRepository;
     }
 
-    /**
-     * @param EventSourcedAggregateRoot $aggregateRoot
-     */
     public function takeSnapshot(EventSourcedAggregateRoot $aggregateRoot)
     {
         $this->snapshotRepository->save(new Snapshot($aggregateRoot));

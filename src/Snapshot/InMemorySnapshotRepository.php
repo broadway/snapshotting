@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * This file is part of the broadway/snapshotting package.
  *
@@ -27,9 +29,6 @@ class InMemorySnapshotRepository implements SnapshotRepository
         return isset($this->store[$id]) ? unserialize($this->store[$id]) : null;
     }
 
-    /**
-     * @param Snapshot $snapshot
-     */
     public function save(Snapshot $snapshot)
     {
         return $this->store[$snapshot->getAggregateRoot()->getAggregateRootId()] =
