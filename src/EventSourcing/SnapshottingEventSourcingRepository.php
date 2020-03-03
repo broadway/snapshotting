@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the broadway/snapshotting package.
  *
@@ -35,10 +37,10 @@ class SnapshottingEventSourcingRepository implements Repository
         Snapshotter $snapshotter
     ) {
         $this->eventSourcingRepository = $eventSourcingRepository;
-        $this->eventStore              = $eventStore;
-        $this->snapshotRepository      = $snapshotRepository;
-        $this->trigger                 = $trigger;
-        $this->snapshotter             = $snapshotter;
+        $this->eventStore = $eventStore;
+        $this->snapshotRepository = $snapshotRepository;
+        $this->trigger = $trigger;
+        $this->snapshotter = $snapshotter;
     }
 
     /**

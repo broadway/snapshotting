@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the broadway/snapshotting package.
  *
@@ -37,7 +39,7 @@ class EventCountTrigger implements Trigger
         $clonedAggregateRoot = clone $aggregateRoot;
 
         foreach ($clonedAggregateRoot->getUncommittedEvents() as $domainMessage) {
-            if (($domainMessage->getPlayhead() + 1) % $this->eventCount === 0) {
+            if (0 === ($domainMessage->getPlayhead() + 1) % $this->eventCount) {
                 return true;
             }
         }

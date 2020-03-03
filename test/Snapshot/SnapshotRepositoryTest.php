@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * This file is part of the broadway/snapshotting package.
  *
@@ -87,7 +89,7 @@ abstract class SnapshotRepositoryTest extends \PHPUnit\Framework\TestCase
     /**
      * @return SnapshotRepository
      */
-    protected abstract function createRepository();
+    abstract protected function createRepository();
 
     protected function setUp(): void
     {
@@ -101,7 +103,7 @@ abstract class SnapshotRepositoryTest extends \PHPUnit\Framework\TestCase
     private function createAggregateWithHistory($numberOfEvents)
     {
         $aggregate = new MyAggregate();
-        for ($i = 0; $i < $numberOfEvents; $i++) {
+        for ($i = 0; $i < $numberOfEvents; ++$i) {
             $aggregate->apply(new MyEvent());
         }
         $aggregate->getUncommittedEvents(); // Flush events
@@ -113,9 +115,6 @@ final class MyAggregate extends EventSourcedAggregateRoot
 {
     private $foo = 0;
 
-    /**
-     * @return string
-     */
     public function getAggregateRootId(): string
     {
         return '42';

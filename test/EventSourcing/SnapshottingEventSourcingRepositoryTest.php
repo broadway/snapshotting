@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the broadway/snapshotting package.
  *
@@ -11,7 +13,6 @@
 
 namespace Broadway\Snapshotting\EventSourcing;
 
-use Broadway\Domain\AggregateRoot;
 use Broadway\Domain\DomainEventStream;
 use Broadway\Domain\DomainMessage;
 use Broadway\Domain\Metadata;
@@ -23,7 +24,6 @@ use Broadway\Snapshotting\Snapshot\Snapshot;
 use Broadway\Snapshotting\Snapshot\SnapshotRepository;
 use Broadway\Snapshotting\Snapshot\Snapshotter;
 use Broadway\Snapshotting\Snapshot\Trigger\EventCountTrigger;
-use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 class SnapshottingEventSourcingRepositoryTest extends \PHPUnit\Framework\TestCase
@@ -37,9 +37,9 @@ class SnapshottingEventSourcingRepositoryTest extends \PHPUnit\Framework\TestCas
     public function setUp(): void
     {
         $this->eventSourcingRepository = $this->prophesize(EventSourcingRepository::class);
-        $this->eventStore              = $this->prophesize(EventStore::class);
-        $this->snapshotRepository      = $this->prophesize(SnapshotRepository::class);
-        $this->snapshotter             = $this->prophesize(Snapshotter::class);
+        $this->eventStore = $this->prophesize(EventStore::class);
+        $this->snapshotRepository = $this->prophesize(SnapshotRepository::class);
+        $this->snapshotter = $this->prophesize(Snapshotter::class);
 
         $this->snapshottingEventSourcingRepository = new SnapshottingEventSourcingRepository(
             $this->eventSourcingRepository->reveal(),
@@ -148,7 +148,7 @@ class SnapshottingEventSourcingRepositoryTest extends \PHPUnit\Framework\TestCas
     {
         $aggregateRoot = new TestEventSourcedAggregateRoot();
 
-        for ($i = 0; $i < $countEvents; $i++) {
+        for ($i = 0; $i < $countEvents; ++$i) {
             $aggregateRoot->apply(new \stdClass());
         }
 

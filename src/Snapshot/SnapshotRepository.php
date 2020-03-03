@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the broadway/snapshotting package.
  *
@@ -20,8 +22,5 @@ interface SnapshotRepository
      */
     public function load($id);
 
-    /**
-     * @param Snapshot $snapshot
-     */
     public function save(Snapshot $snapshot);
 }

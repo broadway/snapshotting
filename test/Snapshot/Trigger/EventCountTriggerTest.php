@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the broadway/snapshotting package.
  *
@@ -12,7 +14,6 @@
 namespace Broadway\Snapshotting\Snapshot\Trigger;
 
 use Broadway\Snapshotting\EventSourcing\Testing\TestEventSourcedAggregateRoot;
-use PHPUnit\Framework\TestCase;
 
 class EventCountTriggerTest extends \PHPUnit\Framework\TestCase
 {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the broadway/snapshotting package.
  *
@@ -18,13 +20,10 @@ class Snapshot
     private $playhead;
     private $aggregateRoot;
 
-    /**
-     * @param EventSourcedAggregateRoot $aggregateRoot
-     */
     public function __construct(EventSourcedAggregateRoot $aggregateRoot)
     {
         $this->aggregateRoot = $aggregateRoot;
-        $this->playhead      = $aggregateRoot->getPlayhead();
+        $this->playhead = $aggregateRoot->getPlayhead();
     }
 
     /**
