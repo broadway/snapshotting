@@ -3,6 +3,8 @@ broadway/snapshotting
 
 Proof-of-concept component providing snapshotting functionality to [broadway/broadway](https://github.com/broadway/broadway).
 
+[![Build Status](https://travis-ci.org/broadway/snapshotting.svg?branch=master)](https://travis-ci.org/broadway/snapshotting)
+
 ## Installation
 
 ```
