@@ -15,7 +15,7 @@ namespace Broadway\Snapshotting\Snapshot;
 class InMemorySnapshotRepository implements SnapshotRepository
 {
     /**
-     * @var Snapshot[]
+     * @var array
      */
     private $store = [];
 
