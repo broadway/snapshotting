@@ -24,7 +24,7 @@ abstract class SnapshotRepositoryTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function it_implements_SnapshotRepository()
+    public function it_implements__snapshot_repository()
     {
         $this->assertInstanceOf(SnapshotRepository::class, $this->repository);
     }
@@ -54,7 +54,7 @@ abstract class SnapshotRepositoryTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function it_does_not_mutate_state_of_Snapshot_Aggregate_after_persisting()
+    public function it_does_not_mutate_state_of__snapshot__aggregate_after_persisting()
     {
         $aggregate = $this->createAggregateWithHistory(5);
         $this->repository->save(new Snapshot($aggregate));
@@ -70,7 +70,7 @@ abstract class SnapshotRepositoryTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function it_does_not_mutate_state_of_Snapshot_Aggregate_after_loading()
+    public function it_does_not_mutate_state_of__snapshot__aggregate_after_loading()
     {
         $aggregate = $this->createAggregateWithHistory(5);
         $this->repository->save(new Snapshot($aggregate));
@@ -107,6 +107,7 @@ abstract class SnapshotRepositoryTest extends \PHPUnit\Framework\TestCase
             $aggregate->apply(new MyEvent());
         }
         $aggregate->getUncommittedEvents(); // Flush events
+
         return $aggregate;
     }
 }
