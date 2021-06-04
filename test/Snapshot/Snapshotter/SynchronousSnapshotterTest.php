@@ -31,7 +31,7 @@ class SynchronousSnapshotterTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function it_persists_directly_to_SnapshotRepository()
+    public function it_persists_directly_to__snapshot_repository()
     {
         $aggregate = new MyAggregate();
 

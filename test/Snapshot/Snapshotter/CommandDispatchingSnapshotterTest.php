@@ -31,7 +31,7 @@ class CommandDispatchingSnapshotterTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function it_dispatches_ScheduleSnapshot_command()
+    public function it_dispatches__schedule_snapshot_command()
     {
         $this->commandBus
             ->dispatch(
