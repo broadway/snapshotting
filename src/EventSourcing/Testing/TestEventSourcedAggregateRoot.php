@@ -17,9 +17,6 @@ use Broadway\EventSourcing\EventSourcedAggregateRoot;
 
 class TestEventSourcedAggregateRoot extends EventSourcedAggregateRoot
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getAggregateRootId(): string
     {
         return '42';
