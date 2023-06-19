@@ -43,9 +43,6 @@ class SnapshottingEventSourcingRepository implements Repository
         $this->snapshotter = $snapshotter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function load($id): AggregateRoot
     {
         $snapshot = $this->snapshotRepository->load($id);
@@ -61,9 +58,6 @@ class SnapshottingEventSourcingRepository implements Repository
         return $aggregateRoot;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function save(AggregateRoot $aggregate): void
     {
         $takeSnaphot = $this->trigger->shouldSnapshot($aggregate);

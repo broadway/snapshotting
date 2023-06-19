@@ -31,9 +31,6 @@ class EventCountTrigger implements Trigger
         $this->eventCount = $eventCount;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function shouldSnapshot(EventSourcedAggregateRoot $aggregateRoot)
     {
         $clonedAggregateRoot = clone $aggregateRoot;
