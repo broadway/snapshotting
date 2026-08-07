@@ -34,7 +34,7 @@ class SnapshottingEventSourcingRepository implements Repository
         EventStore $eventStore,
         SnapshotRepository $snapshotRepository,
         Trigger $trigger,
-        Snapshotter $snapshotter
+        Snapshotter $snapshotter,
     ) {
         $this->eventSourcingRepository = $eventSourcingRepository;
         $this->eventStore = $eventStore;
