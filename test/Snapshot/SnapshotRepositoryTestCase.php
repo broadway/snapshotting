@@ -13,33 +13,28 @@ declare(strict_types=1);
 namespace Broadway\Snapshotting\Snapshot;
 
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
+use PHPUnit\Framework\Attributes\Test;
 
-abstract class SnapshotRepositoryTest extends \PHPUnit\Framework\TestCase
+abstract class SnapshotRepositoryTestCase extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var SnapshotRepository
      */
     protected $repository;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_implements__snapshot_repository()
     {
         $this->assertInstanceOf(SnapshotRepository::class, $this->repository);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_null_when_no_snapshot_available()
     {
         $this->assertNull($this->repository->load(42));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_snapshot_when_available()
     {
         $aggregate = $this->createAggregateWithHistory(5);
@@ -51,9 +46,7 @@ abstract class SnapshotRepositoryTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_does_not_mutate_state_of__snapshot__aggregate_after_persisting()
     {
         $aggregate = $this->createAggregateWithHistory(5);
@@ -67,9 +60,7 @@ abstract class SnapshotRepositoryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(new Snapshot($this->createAggregateWithHistory(5)), $snapshot);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_does_not_mutate_state_of__snapshot__aggregate_after_loading()
     {
         $aggregate = $this->createAggregateWithHistory(5);

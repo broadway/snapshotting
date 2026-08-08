@@ -24,10 +24,14 @@ use Broadway\Snapshotting\Snapshot\Snapshot;
 use Broadway\Snapshotting\Snapshot\SnapshotRepository;
 use Broadway\Snapshotting\Snapshot\Snapshotter;
 use Broadway\Snapshotting\Snapshot\Trigger\EventCountTrigger;
+use PHPUnit\Framework\Attributes\Test;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class SnapshottingEventSourcingRepositoryTest extends \PHPUnit\Framework\TestCase
 {
+    use ProphecyTrait;
+
     private $eventStore;
     private $eventSourcingRepository;
     private $snapshotRepository;
@@ -50,9 +54,7 @@ class SnapshottingEventSourcingRepositoryTest extends \PHPUnit\Framework\TestCas
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_reconstitutes_aggregate_when_no_snapshot_found()
     {
         $this->snapshotRepository
@@ -70,9 +72,7 @@ class SnapshottingEventSourcingRepositoryTest extends \PHPUnit\Framework\TestCas
         $this->snapshottingEventSourcingRepository->load(42);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_queries_the_event_store_for_events_recorded_after_playhead_of_snapshot()
     {
         // create a snapshot of an aggregate root with 5 committed events
@@ -106,9 +106,7 @@ class SnapshottingEventSourcingRepositoryTest extends \PHPUnit\Framework\TestCas
         $this->assertEquals(6, $aggregateRoot->getPlayhead());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_does_not_take_a_snapshot_when_threshold_not_reached()
     {
         $aggregateRoot = $this->createAggregateRootWithEvents(99);
@@ -121,9 +119,7 @@ class SnapshottingEventSourcingRepositoryTest extends \PHPUnit\Framework\TestCas
         $this->snapshottingEventSourcingRepository->save($aggregateRoot);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_takes_a_snapshot_when_threshold_reached()
     {
         $aggregateRoot = $this->createAggregateRootWithEvents(100);
