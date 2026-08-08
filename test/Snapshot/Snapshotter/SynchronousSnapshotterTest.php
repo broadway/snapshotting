@@ -15,9 +15,13 @@ namespace Broadway\Snapshotting\Snapshot\Snapshotter;
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
 use Broadway\Snapshotting\Snapshot\Snapshot;
 use Broadway\Snapshotting\Snapshot\SnapshotRepository;
+use PHPUnit\Framework\Attributes\Test;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class SynchronousSnapshotterTest extends \PHPUnit\Framework\TestCase
 {
+    use ProphecyTrait;
+
     /**
      * @var SnapshotRepository
      */
@@ -28,9 +32,7 @@ class SynchronousSnapshotterTest extends \PHPUnit\Framework\TestCase
      */
     private $snapshotter;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_persists_directly_to__snapshot_repository()
     {
         $aggregate = new MyAggregate();

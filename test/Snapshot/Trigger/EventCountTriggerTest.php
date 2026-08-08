@@ -14,12 +14,11 @@ declare(strict_types=1);
 namespace Broadway\Snapshotting\Snapshot\Trigger;
 
 use Broadway\Snapshotting\EventSourcing\Testing\TestEventSourcedAggregateRoot;
+use PHPUnit\Framework\Attributes\Test;
 
 class EventCountTriggerTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_snapshot_when_number_of_uncommitted_events_exceeds_given_event_count()
     {
         $trigger = new EventCountTrigger(1);

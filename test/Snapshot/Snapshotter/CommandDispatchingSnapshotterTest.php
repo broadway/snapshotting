@@ -15,9 +15,13 @@ namespace Broadway\Snapshotting\Snapshot\Snapshotter;
 use Broadway\CommandHandling\CommandBus;
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
 use Broadway\Snapshotting\Snapshot\Command\ScheduleSnapshot;
+use PHPUnit\Framework\Attributes\Test;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class CommandDispatchingSnapshotterTest extends \PHPUnit\Framework\TestCase
 {
+    use ProphecyTrait;
+
     /**
      * @var CommandBus
      */
@@ -28,9 +32,7 @@ class CommandDispatchingSnapshotterTest extends \PHPUnit\Framework\TestCase
      */
     private $snapshotter;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_dispatches__schedule_snapshot_command()
     {
         $this->commandBus

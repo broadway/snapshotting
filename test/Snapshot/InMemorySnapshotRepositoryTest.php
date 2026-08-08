@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Broadway\Snapshotting\Snapshot;
 
-class InMemorySnapshotRepositoryTest extends SnapshotRepositoryTest
+class InMemorySnapshotRepositoryTest extends SnapshotRepositoryTestCase
 {
     /**
      * @return SnapshotRepository
