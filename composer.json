@@ -12,7 +12,7 @@
     "broadway/coding-standard": "^1.2",
     "phpstan/phpstan": "^2.0",
     "phpspec/prophecy": "^1.15",
-        "phpspec/prophecy-phpunit": "^2.2"
+    "phpspec/prophecy-phpunit": "^2.2"
   },
   "authors": [
     {
